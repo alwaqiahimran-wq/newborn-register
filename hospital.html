@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-UG">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hospital desk | Newborn Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#FFF4B8;--paper:#FFFDF4;--ink:#171717;--muted:#64605A;--blue:#315DFF;--green:#0a7a3e;--line:#ded8bf}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 "DM Sans",sans-serif}
+    h1,h2,h3,.brand{font-family:"Bricolage Grotesque",sans-serif}h1,h2,h3,p{margin-top:0}a{color:inherit}
+    button,input,select{font:inherit}.wrap{width:min(1100px,calc(100% - 40px));margin:auto}
+    .notice{background:var(--ink);color:var(--paper);text-align:center;font-size:12px;padding:8px 16px}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;flex-wrap:wrap}
+    .brand{text-decoration:none;display:flex;gap:10px;align-items:center;font-weight:800;font-size:18px}
+    .brand small{display:block;font:500 11px "DM Sans",sans-serif;letter-spacing:1.2px;text-transform:uppercase;margin-top:4px}
+    .mark{width:38px;height:40px;background:var(--blue);color:#fff;display:grid;place-items:center;border-radius:12px 12px 12px 2px}
+    .navlinks{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;font-weight:600}
+    .navlinks a{text-decoration:none}.navlinks a:hover{color:var(--blue)}
+    .badge{display:inline-block;background:#e9edff;color:var(--blue);font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+    .hero{background:var(--bg);border-block:1px solid var(--line);padding:28px 0 32px}
+    .hero h1{font-size:clamp(28px,4vw,42px);letter-spacing:-1px;line-height:1.15;margin-bottom:8px}
+    .hero p{color:var(--muted);max-width:640px;margin-bottom:0}
+    .grid{display:grid;grid-template-columns:1.4fr .9fr;gap:28px;padding:32px 0 48px}
+    @media(max-width:860px){.grid{grid-template-columns:1fr}}
+    .card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:22px}
+    .card h2{font-size:22px;margin-bottom:6px}.card .intro{color:var(--muted);font-size:14px;margin-bottom:18px}
+    fieldset{border:none;margin:0 0 18px;padding:0}
+    legend{font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media(max-width:560px){.row{grid-template-columns:1fr}}
+    label{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
+    input,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;margin-bottom:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border:none;border-radius:8px;padding:12px 18px;font-weight:700;cursor:pointer}
+    .btn-primary{background:var(--blue);color:#fff;width:100%}
+    .btn-secondary{background:#fff;border:1px solid var(--ink);width:100%;margin-top:8px}
+    .result{margin-top:16px;padding:14px;border-radius:10px;background:#eaf7f0;border:1px solid #b7e0c6;display:none}
+    .result.show{display:block}.result code{background:#fff;padding:2px 6px;border-radius:4px;font-size:13px}
+    .side-list{list-style:none;padding:0;margin:0}
+    .side-list li{border-bottom:1px solid var(--line);padding:10px 0;font-size:14px}
+    .side-list span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+    .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#e9edff;color:var(--blue)}
+    footer{border-top:1px solid var(--line);padding:20px 0 36px;font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="notice">Hospital staff desk · Demo mode · NIRA link is simulated for presentation</div>
+  <header class="wrap">
+    <nav class="nav">
+      <a class="brand" href="index.html"><span class="mark">+</span><span>Newborn Register<small>Hospital desk</small></span></a>
+      <div class="navlinks">
+        <a href="index.html">Public portal</a>
+        <a href="track.html">Track</a>
+        <a href="hospital.html">Hospital desk</a>
+      </div>
+    </nav>
+  </header>
+  <section class="hero">
+    <div class="wrap">
+      <span class="badge">Zandya Technologies International · Pilot</span>
+      <h1>Record a birth at the facility</h1>
+      <p>Capture newborn and parent details, issue a reference, and queue a notification to NIRA (demo). Works offline in the browser for this presentation build.</p>
+    </div>
+  </section>
+  <main class="wrap grid">
+    <section class="card">
+      <h2>Birth notification form</h2>
+      <p class="intro">Submit stores on this device and runs the NIRA demo gateway.</p>
+      <form id="birthForm">
+        <fieldset>
+          <legend>Facility</legend>
+          <label for="facility">Hospital / facility name</label>
+          <input id="facility" required value="Demo General Hospital">
+        </fieldset>
+        <fieldset>
+          <legend>Child</legend>
+          <div class="row">
+            <div><label for="childFirst">First name</label><input id="childFirst" required></div>
+            <div><label for="childLast">Last name</label><input id="childLast" required></div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="sex">Sex</label>
+              <select id="sex" required>
+                <option value="">Select</option>
+                <option>Female</option>
+                <option>Male</option>
+                <option>Intersex / unspecified</option>
+              </select>
+            </div>
+            <div><label for="weight">Weight (kg)</label><input id="weight" type="number" step="0.01" min="0"></div>
+          </div>
+          <div class="row">
+            <div><label for="dob">Date of birth</label><input id="dob" type="date" required></div>
+            <div><label for="tob">Time of birth</label><input id="tob" type="time"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Mother</legend>
+          <label for="motherName">Full name</label>
+          <input id="motherName" required>
+          <div class="row">
+            <div><label for="motherNin">NIN / National ID</label><input id="motherNin"></div>
+            <div><label for="motherPhone">Phone</label><input id="motherPhone" type="tel" placeholder="+256…"></div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Father / other parent (optional)</legend>
+          <label for="fatherName">Full name</label>
+          <input id="fatherName">
+          <div class="row">
+            <div><label for="fatherNin">NIN</label><input id="fatherNin"></div>
+            <div><label for="fatherPhone">Phone</label><input id="fatherPhone" type="tel"></div>
+          </div>
+        </fieldset>
+        <button class="btn btn-primary" type="submit">Save &amp; queue to NIRA (demo)</button>
+      </form>
+      <div class="result" id="result"></div>
+    </section>
+    <aside>
+      <div class="card">
+        <h2>How this maps to NIRA</h2>
+        <p class="intro">Hospital records the birth → notification queues to NIRA → verification / certificate pathway.</p>
+        <p class="intro"><span class="pill">DEMO</span> Live NIRA API needs official partnership.</p>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h2>Recent on this device</h2>
+        <ul class="side-list" id="recentList"></ul>
+      </div>
+    </aside>
+  </main>
+  <footer>
+    <div class="wrap"><strong>Zandya Technologies International</strong> · <a href="index.html">Public portal</a></div>
+  </footer>
+  <script src="app.js"></script>
+  <script>
+  (function () {
+    const form = document.getElementById("birthForm");
+    const result = document.getElementById("result");
+    const recentList = document.getElementById("recentList");
+    const dob = document.getElementById("dob");
+    if (dob && !dob.value) dob.value = new Date().toISOString().slice(0, 10);
+    function refreshRecent() {
+      const rows = window.NewbornRegister.loadAll().slice(0, 8);
+      recentList.innerHTML = rows.map(function (r) {
+        const name = ((r.child && r.child.firstName) || "") + " " + ((r.child && r.child.lastName) || "");
+        return "<li><strong>" + r.reference + "</strong> · " + name.trim() +
+          "<span>" + (r.statusLabel || r.status) +
+          (r.nira && r.nira.ackId ? " · " + r.nira.ackId : "") + "</span></li>";
+      }).join("");
+    }
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const row = window.NewbornRegister.createApplication({
+        source: "hospital",
+        facility: document.getElementById("facility").value.trim(),
+        child: {
+          firstName: document.getElementById("childFirst").value.trim(),
+          lastName: document.getElementById("childLast").value.trim(),
+          sex: document.getElementById("sex").value,
+          dateOfBirth: document.getElementById("dob").value,
+          timeOfBirth: document.getElementById("tob").value,
+          weightKg: document.getElementById("weight").value
+        },
+        mother: {
+          fullName: document.getElementById("motherName").value.trim(),
+          nin: document.getElementById("motherNin").value.trim(),
+          phone: document.getElementById("motherPhone").value.trim()
+        },
+        father: {
+          fullName: document.getElementById("fatherName").value.trim(),
+          nin: document.getElementById("fatherNin").value.trim(),
+          phone: document.getElementById("fatherPhone").value.trim()
+        }
+      });
+      result.className = "result show";
+      result.innerHTML = "<p><strong>Saved.</strong> Reference:</p><p><code>" + row.reference +
+        "</code></p><p>NIRA demo ack: <code>" + (row.nira && row.nira.ackId ? row.nira.ackId : "—") +
+        "</code></p><p><a href='track.html'>Track this application</a></p>";
+      form.reset();
+      document.getElementById("facility").value = "Demo General Hospital";
+      if (dob) dob.value = new Date().toISOString().slice(0, 10);
+      refreshRecent();
+    });
+    refreshRecent();
+  })();
+  </script>
+</body>
+</html>
